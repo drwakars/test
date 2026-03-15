@@ -1,0 +1,23 @@
+name: Build iOS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: تحميل المشروع
+        uses: actions/checkout@v4
+
+      - name: عرض نسخة Xcode
+        run: xcodebuild -version
+
+      - name: Build Archive
+        run: |
+          xcodebuild \
+          -scheme AccountBook \
+          -configuration Release \
+          -archivePath build/App.xcarchive \
+          archive
